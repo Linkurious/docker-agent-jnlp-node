@@ -3,7 +3,7 @@ LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # hadolint ignore=SC2016
-RUN git clone --depth 1 --branch v0.35.2 https://github.com/nvm-sh/nvm.git ~/.nvm && \
+RUN git clone --depth 1 --branch v0.35.3 https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
