@@ -13,3 +13,4 @@ RUN git clone --depth 1 --branch v0.35.3 https://github.com/nvm-sh/nvm.git ~/.nv
     && nvm install 14.4.0
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
+RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
