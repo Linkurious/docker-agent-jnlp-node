@@ -1,11 +1,11 @@
-# Dockerized repository
+# Dockerized node jnlp agent for jenkins
 
 ## Configuration
   - Configure variables in .env. See .env.example for template.
 Reasonable defaults are provided.
 
 ## Usage
-  - Run with docker-compose
-    ```
-    $ docker-compose up -d
-    ```
+  THis is directly used and spawned by jenkins
+## Requires
+
+For simple integration in Jenkins it is worth using : https://plugins.jenkins.io/nvm-wrapper/
