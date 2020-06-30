@@ -1,4 +1,4 @@
-FROM push.docker.nexus3.linkurious.net/linkurious/docker-agent-jnlp:0.0.1
+FROM push.docker.nexus3.linkurious.net/linkurious/docker-agent-jnlp:0.0.2
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
