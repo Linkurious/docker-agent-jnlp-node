@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.3
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.4
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
@@ -12,7 +12,7 @@ RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
-        google-chrome-stable=83.0.4103.116-1 \
+        google-chrome-stable=85.0.4183.121-1 \
         firefox-esr=68.10.0esr-1~deb10u1 \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
@@ -25,8 +25,8 @@ RUN git clone --depth 1 --branch v0.35.3 https://github.com/nvm-sh/nvm.git ~/.nv
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 10.21.0 \
-    && nvm install 12.18.0 \
-    && nvm install 14.4.0
+    && nvm install 12.18.4 \
+    && nvm install 14.12.0
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
