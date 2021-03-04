@@ -49,10 +49,9 @@ function run_updates
 {
   git checkout "$source_branch"
   git pull
-  echo npm run latest:${target_branch} --if-present
-  echo " " >> Jenkinsfile
-  if [ -n "$(git status --porcelain)" ]; then
-    echo changes
+  npm run latest:${target_branch} --if-present
+  if [ -n "$(git status --porcelain -u no)" ]; then
+    echo commiting changes
     git commit -a -m "Bumping linkurious dependencies to ${target_branch}"
   fi
 }
@@ -68,7 +67,8 @@ target_branch="master"
 continuation_token=""
 continuation_token_qs=""
 token_increment=0
-while getopts "p:o:s:t:v:hd" argument
+should_run_updates=false
+while getopts "p:o:s:t:v:hdu" argument
 do
   case $argument in
     p) project=$OPTARG;;
@@ -76,6 +76,7 @@ do
     s) source_branch=$OPTARG;;
     t) target_branch=$OPTARG;;
     v) version=$OPTARG;;
+    u) should_run_updates=true;;
     h) usage;;
   esac
 done
@@ -93,7 +94,9 @@ fi
 
 if should_open_pr ; then
   echo "Should open PR"
-  run_updates
+  if [ should_run_updates ]; then
+    run_updates
+  fi
   create_pr
 fi
 
