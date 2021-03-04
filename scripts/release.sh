@@ -34,7 +34,8 @@ function create_pr
 
 function wait_pr_mergeable
 {
-until gh pr checks "$source_branch"; do sleep 5; done
+#disabling for now as we can't remove status
+#until gh pr checks "$source_branch"; do sleep 5; done
 current_pr_status
 
 #until gh pr status | grep -A2 "Current branch" | tail -n1 | grep -q "Checks passing"; do sleep 1; done
@@ -64,9 +65,6 @@ version=""
 project=""
 source_branch="develop"
 target_branch="master"
-continuation_token=""
-continuation_token_qs=""
-token_increment=0
 should_run_updates=false
 while getopts "p:o:s:t:v:hdu" argument
 do
@@ -94,7 +92,8 @@ fi
 
 if should_open_pr ; then
   echo "Should open PR"
-  if [ should_run_updates ]; then
+  echo $should_run_updates
+  if [ "$should_run_updates" = true ]; then
     run_updates
   fi
   create_pr
