@@ -17,7 +17,6 @@ RUN apt-get update -qqy && \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
-COPY scripts/release.sh /usr/local/bin/release.sh
 
 USER jenkins
 # hadolint ignore=SC2016
