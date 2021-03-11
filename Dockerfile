@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.6
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.7
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
@@ -34,3 +34,12 @@ ENV ENV='$HOME/.profile'
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+
+ARG BUILD_VERSION
+LABEL maintainer="Edward Nys <edward@linkurio.us>" \
+      org.opencontainers.image.description="Linkurious jenkins jnlp agent node" \
+      org.opencontainers.image.documentation="https://github.com/Linkurious/docker-agent-jnlp-node" \
+      org.opencontainers.image.title="Jenkins jnlp agent node for Linkurious" \
+      org.opencontainers.image.url="https://github.com/Linkurious/docker-agent-jnlp-node" \
+      org.opencontainers.image.vendor="Linkurious" \
+      org.opencontainers.image.version="${BUILD_VERSION}"
