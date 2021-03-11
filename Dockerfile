@@ -20,7 +20,7 @@ RUN apt-get update -qqy && \
 
 USER jenkins
 # hadolint ignore=SC2016
-RUN git clone --depth 1 --branch v0.35.3 https://github.com/nvm-sh/nvm.git ~/.nvm && \
+RUN git clone --depth 1 --branch v0.37.2 https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
