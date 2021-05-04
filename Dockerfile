@@ -28,7 +28,7 @@ RUN git clone --depth 1 --branch v0.37.2 https://github.com/nvm-sh/nvm.git ~/.nv
     && nvm install 10.23.0 \
     && nvm install 10.24.0 \
     && nvm install 12.18.4 \
-    && nvm install 14.12.0
+    && nvm install 14.16.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
