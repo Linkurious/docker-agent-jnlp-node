@@ -19,7 +19,7 @@ RUN apt-get update -qqy && \
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
 
 USER jenkins
-# hadolint ignore=SC2016
+# hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch v0.37.2 https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
@@ -28,9 +28,10 @@ RUN git clone --depth 1 --branch v0.37.2 https://github.com/nvm-sh/nvm.git ~/.nv
     && nvm install 10.23.0 \
     && nvm install 10.24.0 \
     && nvm install 12.18.4 \
-    && nvm install 14.12.0
+    && nvm install 14.16.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
+# hadolint ignore=SC1091
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
