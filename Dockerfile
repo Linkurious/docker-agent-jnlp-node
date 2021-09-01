@@ -12,7 +12,7 @@ RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
-        google-chrome-stable=92.0.4515.131-1 \
+        google-chrome-stable=93.0.4577.63-1 \
         firefox-esr=78.13.0esr-1~deb10u1 \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
