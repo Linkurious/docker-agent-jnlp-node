@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.10
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.11
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
@@ -12,8 +12,8 @@ RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
-        google-chrome-stable=92.0.4515.131-1 \
-        firefox-esr=78.12.0esr-1~deb10u1 \
+        google-chrome-stable=93.0.4577.63-1 \
+        firefox-esr=78.13.0esr-1~deb10u1 \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
