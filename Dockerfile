@@ -12,8 +12,8 @@ RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
-        google-chrome-stable=93.0.4577.63-1 \
-        firefox-esr=78.13.0esr-1~deb10u1 \
+        google-chrome-stable=95.0.4638.54-1 \
+        firefox-esr=78.15.0esr-1~deb10u1 \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
@@ -25,9 +25,10 @@ RUN git clone --depth 1 --branch v0.37.2 https://github.com/nvm-sh/nvm.git ~/.nv
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
+    && nvm install 14.18.1 \
     && nvm install 10.23.0 \
-    && nvm install 10.24.0 \
     && nvm install 12.18.4 \
+    && nvm install 12.22.7 \
     && nvm install 14.16.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
