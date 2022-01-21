@@ -20,15 +20,14 @@ RUN apt-get update -qqy && \
 
 USER jenkins
 # hadolint ignore=SC1091, SC2016
-RUN git clone --depth 1 --branch v0.39.0 https://github.com/nvm-sh/nvm.git ~/.nvm && \
+RUN git clone --depth 1 --branch v0.39.1 https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 14.18.1 \
-    && nvm install 10.23.0 \
-    && nvm install 12.18.4 \
-    && nvm install 12.22.7 \
+    && nvm install 14.18.3 \
+    && nvm install 10.24.1 \
+    && nvm install 12.22.9 \
     && nvm install 14.16.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
