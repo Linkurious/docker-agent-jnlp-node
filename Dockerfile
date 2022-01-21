@@ -35,6 +35,7 @@ ENV ENV='$HOME/.profile'
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+COPY .angular-config.json /home/jenkins/.angular-config.json
 
 ARG BUILD_VERSION
 LABEL maintainer="Edward Nys <edward@linkurio.us>" \
