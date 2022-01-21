@@ -12,23 +12,22 @@ RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
-        google-chrome-stable=96.0.4664.45-1 \
-        firefox-esr=78.14.0esr-1~deb11u1 \
+        google-chrome-stable=97.0.4692.99-1 \
+        firefox-esr=91.5.0esr-1~deb11u1 \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
 
 USER jenkins
 # hadolint ignore=SC1091, SC2016
-RUN git clone --depth 1 --branch v0.39.0 https://github.com/nvm-sh/nvm.git ~/.nvm && \
+RUN git clone --depth 1 --branch v0.39.1 https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 14.18.1 \
-    && nvm install 10.23.0 \
-    && nvm install 12.18.4 \
-    && nvm install 12.22.7 \
+    && nvm install 14.18.3 \
+    && nvm install 10.24.1 \
+    && nvm install 12.22.9 \
     && nvm install 14.16.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
@@ -36,6 +35,7 @@ ENV ENV='$HOME/.profile'
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+COPY .angular-config.json /home/jenkins/.angular-config.json
 
 ARG BUILD_VERSION
 LABEL maintainer="Edward Nys <edward@linkurio.us>" \
