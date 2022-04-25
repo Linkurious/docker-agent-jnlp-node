@@ -8,10 +8,10 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
   && sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
-# renovate: datasource=repology depName=debian_11/google-chrome-stable versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=99.0.4844.82-1
+# renovate: datasource=repology depName=aur/google-chrome versioning=loose
+ARG GOOGLE_CHROME_STABLE_VERSION=100.0.4896.127-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=91.7.0esr-1~deb11u1
+ARG FIREFOX_ESR_VERSION=78.15.0esr-1~deb11u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -23,8 +23,11 @@ RUN apt-get update -qqy && \
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
 
 USER jenkins
+
+# renovate: datasource=github-releases depName=nvm-sh/nvm
+ARG NVM_VERSION=v2.3.0
 # hadolint ignore=SC1091, SC2016
-RUN git clone --depth 1 --branch v0.39.1 https://github.com/nvm-sh/nvm.git ~/.nvm && \
+RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
