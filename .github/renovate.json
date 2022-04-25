@@ -1,12 +1,9 @@
 {
   "extends": [
-    "config:base"
+    "github>Linkurious/renovate-config",
+    "github>Linkurious/renovate-config:meta",
+    "regexManagers:dockerfileVersions"
   ],
   "baseBranches": ["develop"],
-  "labels": ["dependencies"],
-  "prConcurrentLimit": 10,
-  "schedule": "every weekend",
-  "vulnerabilityAlerts": {
-    "labels": ["type:security"]
-  }
+  "prConcurrentLimit": 10
 }
