@@ -1,4 +1,4 @@
-@Library('linkurious-shared')_
+@Library('linkurious-shared@feature/JSL-113')_
 
 dockerJob {
   // General
