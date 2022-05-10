@@ -9,7 +9,7 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=100.0.4896.127-1
+ARG GOOGLE_CHROME_STABLE_VERSION=101.0.4951.54-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
 ARG FIREFOX_ESR_VERSION=78.15.0esr-1~deb11u1
 RUN apt-get update -qqy && \
@@ -33,7 +33,7 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 14.19.1 \
-    && nvm install 16.14.2 \
+    && nvm install 16.15.0 \
     && nvm install 10.24.1
 #for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
