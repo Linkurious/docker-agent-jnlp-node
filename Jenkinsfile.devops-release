@@ -1,0 +1,12 @@
+@Library('linkurious-shared')_
+
+lkeSubReleaseJob {
+  // General
+  projectName = "linkurious/docker-agent-jnlp-node"
+
+  releaseType = 'docker'
+  reviewers = "Linkurious/devops"
+
+  runAssetWaiter = true
+
+}
