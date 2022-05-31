@@ -5,4 +5,7 @@ dockerJob {
   projectName = "linkurious/docker-agent-jnlp-node"
 
   runDependencyScan = true
+
+  createGitTag = true
+  runBookeeping = true
 }
