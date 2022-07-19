@@ -11,7 +11,7 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
 ARG GOOGLE_CHROME_STABLE_VERSION=103.0.5060.114-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=78.15.0esr-1~deb11u1
+ARG FIREFOX_ESR_VERSION=91.11.0esr-1~deb11u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
