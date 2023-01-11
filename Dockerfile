@@ -50,5 +50,6 @@ LABEL maintainer="Edward Nys <edward@linkurio.us>" \
       org.opencontainers.image.documentation="https://github.com/Linkurious/docker-agent-jnlp-node" \
       org.opencontainers.image.title="Jenkins jnlp agent node for Linkurious" \
       org.opencontainers.image.url="https://github.com/Linkurious/docker-agent-jnlp-node" \
+      org.opencontainers.image.source="https://github.com/Linkurious/docker-agent-jnlp-node" \
       org.opencontainers.image.vendor="Linkurious" \
       org.opencontainers.image.version="${BUILD_VERSION}"
