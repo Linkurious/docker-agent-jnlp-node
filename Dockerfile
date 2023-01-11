@@ -32,10 +32,11 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 16.18.1 \
-    && nvm install 14.20.0 \
-    && nvm install 10.24.1
-#for loading profile, to make nvm available for sh
+    && nvm install 16.19.0 \
+    && nvm install 18.13.0 \
+    && nvm install 14.20.0
+
+# for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 # hadolint ignore=SC1091
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
