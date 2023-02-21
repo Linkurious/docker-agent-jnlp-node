@@ -8,10 +8,11 @@
   "prConcurrentLimit": 10,
   "packageRules": [
     {
-      "groupName": "Browsers",
+      "groupName": "browsers",
       "matchDatasources": [
         "repology"
-      ]
+      ],
+      "separateMajorMinor": false
     }
   ]
 }
