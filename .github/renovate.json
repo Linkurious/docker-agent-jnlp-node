@@ -5,5 +5,14 @@
     "regexManagers:dockerfileVersions"
   ],
   "baseBranches": ["develop"],
-  "prConcurrentLimit": 10
+  "prConcurrentLimit": 10,
+  "packageRules": [
+    {
+      "groupName": "browsers",
+      "matchDatasources": [
+        "repology"
+      ],
+      "separateMajorMinor": false
+    }
+  ]
 }

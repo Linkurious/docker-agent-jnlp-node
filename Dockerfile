@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.20
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.22
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
@@ -9,9 +9,9 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=109.0.5414.74-1
+ARG GOOGLE_CHROME_STABLE_VERSION=110.0.5481.100-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=102.6.0esr-1~deb11u1
+ARG FIREFOX_ESR_VERSION=102.8.0esr-1~deb11u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -32,9 +32,9 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 16.19.0 \
-    && nvm install 18.13.0 \
-    && nvm install 14.20.0
+    && nvm install 16.19.1 \
+    && nvm install 18.14.2 \
+    && nvm install 14.21.3
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
@@ -50,5 +50,6 @@ LABEL maintainer="Edward Nys <edward@linkurio.us>" \
       org.opencontainers.image.documentation="https://github.com/Linkurious/docker-agent-jnlp-node" \
       org.opencontainers.image.title="Jenkins jnlp agent node for Linkurious" \
       org.opencontainers.image.url="https://github.com/Linkurious/docker-agent-jnlp-node" \
+      org.opencontainers.image.source="https://github.com/Linkurious/docker-agent-jnlp-node" \
       org.opencontainers.image.vendor="Linkurious" \
       org.opencontainers.image.version="${BUILD_VERSION}"
