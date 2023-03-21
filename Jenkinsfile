@@ -8,4 +8,5 @@ dockerJob {
 
   createGitTag = true
   runBookeeping = true
+  githubRelease = true
 }
