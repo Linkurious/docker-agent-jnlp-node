@@ -9,9 +9,9 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=111.0.5563.146-1
+ARG GOOGLE_CHROME_STABLE_VERSION=115.0.5790.110-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=102.9.0esr-1~deb11u1
+ARG FIREFOX_ESR_VERSION=102.13.0esr-1~deb11u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -25,15 +25,15 @@ RUN apt-get update -qqy && \
 USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
-ARG NVM_VERSION=v0.39.3
+ARG NVM_VERSION=v0.39.4
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 16.19.1 \
-    && nvm install 18.15.0 \
+    && nvm install 16.20.1 \
+    && nvm install 18.17.0 \
     && nvm install 14.21.3
 
 # for loading profile, to make nvm available for sh
