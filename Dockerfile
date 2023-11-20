@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.30
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.31
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
