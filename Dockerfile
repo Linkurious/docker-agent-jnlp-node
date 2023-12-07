@@ -39,7 +39,10 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
 # Registry Client used in build.js of LKE to download docker image and export it to tar
 # renovate: datasource=github-releases depName=regclient/regclient
 ARG REGCLIENT_VERSION=v0.5.5
-RUN echo $PATH && pwd && curl -Lv "https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64" > regctl && ls -l regctl
+RUN echo $PATH \
+    && pwd \
+    && curl -Lv "https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64" > regctl \
+    && ls -l regctl
     # && chmod 755 /usr/local/bin/regctl
 
 # for loading profile, to make nvm available for sh
