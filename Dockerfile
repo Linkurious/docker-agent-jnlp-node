@@ -22,6 +22,12 @@ RUN apt-get update -qqy && \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
 
+# Registry Client used in build.js of LKE to download docker image and export it to tar
+# renovate: datasource=github-releases depName=regclient/regclient
+ARG REGCLIENT_VERSION=v0.5.5
+RUN curl -fsSL "https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64" > /usr/local/bin/regctl \
+    && chmod 755 /usr/local/bin/regctl
+
 USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
@@ -36,14 +42,6 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && nvm install 18.18.2 \
     && nvm install 14.21.3
 
-# Registry Client used in build.js of LKE to download docker image and export it to tar
-# renovate: datasource=github-releases depName=regclient/regclient
-ARG REGCLIENT_VERSION=v0.5.5
-RUN echo "$PATH" \
-    && pwd \
-    && curl -Lv "https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64" > regctl \
-    && ls -l regctl
-    # && chmod 755 /usr/local/bin/regctl
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
