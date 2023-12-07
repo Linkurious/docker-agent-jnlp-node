@@ -9,9 +9,9 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=119.0.6045.159-1
+ARG GOOGLE_CHROME_STABLE_VERSION=120.0.6099.71-1
 # renovate: datasource=repology depName=debian_11/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=115.4.0esr-1~deb11u1
+ARG FIREFOX_ESR_VERSION=115.5.0esr-1~deb11u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -21,6 +21,12 @@ RUN apt-get update -qqy && \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
+
+# Registry Client used in build.js of LKE to download docker image and export it to tar
+# renovate: datasource=github-releases depName=regclient/regclient
+ARG REGCLIENT_VERSION=v0.5.5
+RUN curl -fsSL "https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64" > /usr/local/bin/regctl \
+    && chmod 755 /usr/local/bin/regctl
 
 USER jenkins
 
@@ -35,6 +41,7 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && nvm install 16.20.2 \
     && nvm install 18.18.2 \
     && nvm install 14.21.3
+
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
