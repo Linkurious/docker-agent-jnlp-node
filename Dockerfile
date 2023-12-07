@@ -40,7 +40,7 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
 # renovate: datasource=github-releases depName=regclient/regclient
 ARG REGCLIENT_VERSION=v0.5.5
 RUN curl -fsSL https://github.com/regclient/regclient/releases/download/$REGCLIENT_VERSION/regctl-linux-amd64 > /usr/local/bin/regctl \
-    && chmod 755 regctl
+    && chmod 755 /usr/local/bin/regctl
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
