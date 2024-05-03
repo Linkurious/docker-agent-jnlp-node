@@ -3,6 +3,7 @@
 dockerJob {
   // General
   projectName = "linkurious/docker-agent-jnlp-node"
+  podTemplateNames = ['jnlp-agent']
 
   runDependencyScan = true
 
