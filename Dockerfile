@@ -11,9 +11,9 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=124.0.6367.207-1
+ARG GOOGLE_CHROME_STABLE_VERSION=126.0.6478.114-1
 # renovate: datasource=repology depName=debian_12/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=115.10.0esr-1~deb12u1
+ARG FIREFOX_ESR_VERSION=115.12.0esr-1~deb12u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -37,7 +37,9 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && nvm install 14.21.3 \
     && nvm install 16.20.2 \
     && nvm install 18.20.1 \
-    && nvm install 20.12.1
+    && nvm install 18.20.3 \
+    && nvm install 20.14.0 \
+    && nvm install 20.15.0
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
