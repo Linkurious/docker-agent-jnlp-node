@@ -36,10 +36,8 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 14.21.3 \
     && nvm install 16.20.2 \
-    && nvm install 18.20.1 \
     && nvm install 18.20.4 \
-    && nvm install 20.14.0 \
-    && nvm install 20.15.1
+    && nvm install 20.18.0
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
