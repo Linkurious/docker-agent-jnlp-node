@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.37
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.38
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -11,9 +11,9 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=126.0.6478.182-1
+ARG GOOGLE_CHROME_STABLE_VERSION=130.0.6723.91-1
 # renovate: datasource=repology depName=debian_12/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=115.13.0esr-1~deb12u1
+ARG FIREFOX_ESR_VERSION=128.4.0esr-1~deb12u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -27,7 +27,7 @@ RUN apt-get update -qqy && \
 USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
-ARG NVM_VERSION=v0.39.7
+ARG NVM_VERSION=v0.40.1
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
@@ -36,10 +36,8 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 14.21.3 \
     && nvm install 16.20.2 \
-    && nvm install 18.20.1 \
     && nvm install 18.20.4 \
-    && nvm install 20.14.0 \
-    && nvm install 20.15.1
+    && nvm install 20.18.0
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
