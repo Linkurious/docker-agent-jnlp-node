@@ -5,7 +5,7 @@ lkeSubReleaseJob {
   projectName = "linkurious/docker-agent-jnlp-node"
 
   releaseType = 'docker'
-  reviewers = "Linkurious/devops"
+  reviewers = "Linkurious/devopschapter"
 
   runAssetWaiter = true
 
