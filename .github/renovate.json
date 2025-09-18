@@ -4,7 +4,7 @@
     "github>Linkurious/renovate-config:meta",
     "customManagers:dockerfileVersions"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "develop"
   ],
   "prConcurrentLimit": 10,
