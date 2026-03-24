@@ -37,11 +37,17 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && nvm install 20.20.0 \
     && nvm install 22.22.0 \
     && nvm install 24.13.0
-
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 # hadolint ignore=SC1091
 RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
+
+USER root
+# hadolint ignore=SC1091
+RUN export NVM_DIR="/home/jenkins/.nvm" && \. "$NVM_DIR/nvm.sh" \
+    && npx playwright install --with-deps
+
+USER jenkins
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 COPY .angular-config.json /home/jenkins/.angular-config.json
