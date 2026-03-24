@@ -36,8 +36,8 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 20.20.0 \
     && nvm install 22.22.0 \
-    && nvm install 24.13.0
-
+    && nvm install 24.13.0 \
+    && npx playwright install --with-deps
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 # hadolint ignore=SC1091
