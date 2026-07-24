@@ -4,7 +4,6 @@ version: '3.9'
 services:
   docker-agent-jnlp-node:
     image: ${REPOSITORY:-}linkurious/docker-agent-jnlp-node:${DOCKER_AGENT_JNLP_NODE_VERSION:-0.0.29}
-    platform: linux/amd64
     build:
       context: .
     command: /bin/bash
