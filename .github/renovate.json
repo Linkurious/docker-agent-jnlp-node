@@ -15,6 +15,37 @@
         "repology"
       ],
       "separateMajorMinor": false
+    },
+    {
+      "description": "Group all Node line updates in a single PR",
+      "matchDatasources": [
+        "node-version"
+      ],
+      "groupName": "node"
+    },
+    {
+      "description": "Keep the Node 20 line on 20.x",
+      "matchDatasources": [
+        "node-version"
+      ],
+      "matchCurrentValue": "/^20\\./",
+      "allowedVersions": "<21"
+    },
+    {
+      "description": "Keep the Node 22 line on 22.x",
+      "matchDatasources": [
+        "node-version"
+      ],
+      "matchCurrentValue": "/^22\\./",
+      "allowedVersions": "<23"
+    },
+    {
+      "description": "Keep the Node 24 line on 24.x (bump manually when a newer line becomes mainstream)",
+      "matchDatasources": [
+        "node-version"
+      ],
+      "matchCurrentValue": "/^24\\./",
+      "allowedVersions": "<25"
     }
   ]
 }

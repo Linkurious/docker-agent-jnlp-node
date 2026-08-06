@@ -29,15 +29,21 @@ USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
 ARG NVM_VERSION=v0.40.3
+# renovate: datasource=node-version depName=node versioning=node
+ARG NODE_20_VERSION=20.20.0
+# renovate: datasource=node-version depName=node versioning=node
+ARG NODE_22_VERSION=22.22.0
+# renovate: datasource=node-version depName=node versioning=node
+ARG NODE_24_VERSION=24.18.0
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 20.20.0 \
-    && nvm install 22.22.0 \
-    && nvm install 24.18.0
+    && nvm install "$NODE_20_VERSION" \
+    && nvm install "$NODE_22_VERSION" \
+    && nvm install "$NODE_24_VERSION"
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
