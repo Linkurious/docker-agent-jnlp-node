@@ -6,15 +6,19 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 
+# Refresh HashiCorp apt repo signing key (inherited from base image) to fix
+# "Missing key" / OpenPGP signature verification failures on apt-get update
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --batch --yes --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
 # Latest Google Chrome installation package
-RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/chrome-keyring.gpg \
+RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --batch --yes --dearmor -o /usr/share/keyrings/chrome-keyring.gpg \
   && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/chrome-keyring.gpg] https://dl-ssl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=150.0.7871.186-1
+ARG GOOGLE_CHROME_STABLE_VERSION=153.0.8010.47-1
 # renovate: datasource=repology depName=debian_13/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=140.13.0esr-1~deb13u1
+ARG FIREFOX_ESR_VERSION=140.16.0esr-1~deb13u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -37,7 +41,7 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
     && nvm install 20.20.0 \
     && nvm install 22.22.0 \
-    && nvm install 24.18.0
+    && nvm install 24.21.0
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
