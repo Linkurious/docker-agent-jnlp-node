@@ -12,7 +12,7 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=repology depName=aur/google-chrome versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=153.0.8010.47-1
+ARG GOOGLE_CHROME_STABLE_VERSION=153.0.8010.52-1
 # renovate: datasource=repology depName=debian_13/firefox-esr versioning=loose
 ARG FIREFOX_ESR_VERSION=140.16.0esr-1~deb13u1
 RUN apt-get update -qqy && \
