@@ -8,11 +8,22 @@
     "develop"
   ],
   "prConcurrentLimit": 10,
+  "customDatasources": {
+    "debian-security": {
+      "description": "Debian security archive only publishes Packages.xz, which the deb datasource cannot read",
+      "defaultRegistryUrlTemplate": "https://qa.debian.org/madison.php?package={{packageName}}&table=debian-security&s=trixie-security&a=amd64&text=on",
+      "format": "plain",
+      "transformTemplates": [
+        "{\"releases\": [releases[$contains(version, \"|\")].{\"version\": $trim($split(version, \"|\")[1])}]}"
+      ]
+    }
+  },
   "packageRules": [
     {
       "groupName": "browsers",
       "matchDatasources": [
-        "deb"
+        "deb",
+        "custom.debian-security"
       ],
       "separateMajorMinor": false,
       "automerge": true,
