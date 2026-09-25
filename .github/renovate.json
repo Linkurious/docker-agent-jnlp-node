@@ -11,10 +11,27 @@
   "packageRules": [
     {
       "groupName": "browsers",
-      "matchDatasources": [
-        "repology"
+      "matchPackageNames": [
+        "google-chrome-stable",
+        "firefox-esr"
       ],
-      "separateMajorMinor": false
+      "separateMajorMinor": false,
+      "automerge": true,
+      "schedule": [
+        "at any time"
+      ]
+    },
+    {
+      "description": "Google only publishes the latest Chrome build in its own apt repository",
+      "matchDatasources": [
+        "deb"
+      ],
+      "matchPackageNames": [
+        "google-chrome-stable"
+      ],
+      "registryUrls": [
+        "https://dl.google.com/linux/chrome/deb?suite=stable&components=main&binaryArch=amd64"
+      ]
     },
     {
       "description": "Group all Node line updates in a single PR",
