@@ -12,9 +12,25 @@
     {
       "groupName": "browsers",
       "matchDatasources": [
-        "repology"
+        "deb"
       ],
-      "separateMajorMinor": false
+      "separateMajorMinor": false,
+      "automerge": true,
+      "schedule": [
+        "at any time"
+      ]
+    },
+    {
+      "description": "Google only publishes the latest Chrome build in its own apt repository",
+      "matchDatasources": [
+        "deb"
+      ],
+      "matchPackageNames": [
+        "google-chrome-stable"
+      ],
+      "registryUrls": [
+        "https://dl.google.com/linux/chrome/deb?suite=stable&components=main&binaryArch=amd64"
+      ]
     },
     {
       "description": "Group all Node line updates in a single PR",

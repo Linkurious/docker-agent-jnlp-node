@@ -11,16 +11,17 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
   && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/chrome-keyring.gpg] https://dl-ssl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
-# renovate: datasource=repology depName=aur/google-chrome versioning=loose
+# renovate: datasource=deb depName=google-chrome-stable versioning=loose
 ARG GOOGLE_CHROME_STABLE_VERSION=154.0.8037.57-1
-# renovate: datasource=repology depName=debian_13/firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=140.16.0esr-1~deb13u1
+# firefox-esr is not pinned: Debian security only keeps the latest build and
+# only publishes Packages.xz, which the Renovate deb datasource cannot read.
+# hadolint ignore=DL3008
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
         #xauth=1:1.0.10-1 \
         google-chrome-stable=$GOOGLE_CHROME_STABLE_VERSION \
-        firefox-esr=$FIREFOX_ESR_VERSION \
+        firefox-esr \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
