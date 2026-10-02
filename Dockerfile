@@ -12,9 +12,9 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=deb depName=google-chrome-stable versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=154.0.8037.57-1
+ARG GOOGLE_CHROME_STABLE_VERSION=154.0.8037.97-1
 # renovate: datasource=custom.debian-trixie depName=firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=140.16.0esr-1~deb13u1
+ARG FIREFOX_ESR_VERSION=153.4.0esr-1~deb13u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
