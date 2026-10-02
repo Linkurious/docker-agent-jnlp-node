@@ -16,7 +16,6 @@
         "firefox-esr"
       ],
       "separateMajorMinor": false,
-      "automerge": true,
       "schedule": [
         "at any time"
       ]
