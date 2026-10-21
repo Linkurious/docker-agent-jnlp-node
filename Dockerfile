@@ -32,9 +32,9 @@ ARG NVM_VERSION=v0.40.3
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_20_VERSION=20.20.2
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_22_VERSION=22.23.3
+ARG NODE_22_VERSION=22.23.4
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_24_VERSION=24.21.0
+ARG NODE_24_VERSION=24.22.1
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
