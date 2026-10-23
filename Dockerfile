@@ -45,6 +45,17 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && nvm install "$NODE_22_VERSION" \
     && nvm install "$NODE_24_VERSION"
 
+# OPS-2905: supply-chain mitigation. npm >= 11.19.0 (node 24.21.0+) supports min-release-age.
+# Written to the *global* npmrc of the node 24 install only ($PREFIX/etc/npmrc), because npm bundled
+# with node 20/22 does not know these keys and would warn about unknown config on every command.
+# A project or user .npmrc still takes precedence.
+# hadolint ignore=SC1091
+RUN export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
+    && nvm use "$NODE_24_VERSION" >/dev/null \
+    && mkdir -p "$(npm config get prefix)/etc" \
+    && printf 'min-release-age=7\nmin-release-age-exclude=@linkurious/*\n' > "$(npm config get prefix)/etc/npmrc" \
+    && npm config get min-release-age
+
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
 # hadolint ignore=SC1091
