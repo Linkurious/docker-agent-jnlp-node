@@ -19,7 +19,17 @@ builder = "builder-" + k8s_namespace()
 
 # Detached tmux session, then block forever so the pod runs until tilt down.
 # The wait loop keeps PID 1 alive and lets the pod restart if the session dies.
-startup = 'tmux new-session -d -s dev; while tmux has-session -t dev 2>/dev/null; do sleep 5; done'
+# ~/.npmrc is only written in this dev pod (not baked in the image) so CI is not affected.
+# ${NPM_TOKEN} is expanded by npm at use time: export it in the tmux session.
+npmrc_lines = [
+  '@linkurious:registry = https://nexus3.linkurious.net/repository/npm/',
+  '//nexus3.linkurious.net/repository/npm/:_auth = ${NPM_TOKEN}',
+  'min-release-age=7',
+  'min-release-age-exclude=@linkurious/*',
+  'fetch-timeout = 90000',
+]
+write_npmrc = "[ -f ~/.npmrc ] || printf '%s\\n' " + ' '.join(["'%s'" % l for l in npmrc_lines]) + " > ~/.npmrc"
+startup = write_npmrc + '; tmux new-session -d -s dev; while tmux has-session -t dev 2>/dev/null; do sleep 5; done'
 
 name = 'docker-agent-jnlp-node'
 image = 'linkurious/docker-agent-jnlp-node'
