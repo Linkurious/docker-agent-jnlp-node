@@ -30,8 +30,6 @@ USER jenkins
 # renovate: datasource=github-releases depName=nvm-sh/nvm
 ARG NVM_VERSION=v0.40.3
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_20_VERSION=20.20.2
-# renovate: datasource=node-version depName=node versioning=node
 ARG NODE_22_VERSION=22.23.4
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_24_VERSION=24.22.1
@@ -43,7 +41,6 @@ RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.gi
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install "$NODE_20_VERSION" \
     && nvm install "$NODE_22_VERSION" \
     && nvm install "$NODE_24_VERSION" \
     && nvm install "$NODE_26_VERSION"
