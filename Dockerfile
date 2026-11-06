@@ -21,6 +21,7 @@ RUN apt-get update -qqy && \
         #xauth=1:1.0.10-1 \
         google-chrome-stable=$GOOGLE_CHROME_STABLE_VERSION \
         firefox-esr=$FIREFOX_ESR_VERSION \
+        tmux \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 #RUN echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
