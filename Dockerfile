@@ -12,9 +12,9 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=deb depName=google-chrome-stable versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=156.0.8078.47-1
+ARG GOOGLE_CHROME_STABLE_VERSION=157.0.8103.38-1
 # renovate: datasource=custom.debian-trixie depName=firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=153.5.1esr-1~deb13u1
+ARG FIREFOX_ESR_VERSION=153.6.0esr-1~deb13u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
@@ -30,20 +30,20 @@ USER jenkins
 # renovate: datasource=github-releases depName=nvm-sh/nvm
 ARG NVM_VERSION=v0.40.3
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_20_VERSION=20.20.2
-# renovate: datasource=node-version depName=node versioning=node
 ARG NODE_22_VERSION=22.23.4
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_24_VERSION=24.22.1
+# renovate: datasource=node-version depName=node versioning=node
+ARG NODE_26_VERSION=26.13.0
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
     && echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.profile \
     && source ~/.bashrc \
     && export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh" \
-    && nvm install "$NODE_20_VERSION" \
     && nvm install "$NODE_22_VERSION" \
-    && nvm install "$NODE_24_VERSION"
+    && nvm install "$NODE_24_VERSION" \
+    && nvm install "$NODE_26_VERSION"
 
 # for loading profile, to make nvm available for sh
 ENV ENV='$HOME/.profile'
