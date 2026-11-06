@@ -32,7 +32,7 @@ ARG NVM_VERSION=v0.40.3
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_22_VERSION=22.23.4
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_24_VERSION=24.22.1
+ARG NODE_24_VERSION=24.22.2
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_26_VERSION=26.13.0
 # hadolint ignore=SC1091, SC2016
