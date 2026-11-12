@@ -14,7 +14,7 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 # renovate: datasource=deb depName=google-chrome-stable versioning=loose
 ARG GOOGLE_CHROME_STABLE_VERSION=157.0.8103.78-1
 # renovate: datasource=custom.debian-trixie depName=firefox-esr versioning=loose
-ARG FIREFOX_ESR_VERSION=153.6.0esr-1~deb13u1
+ARG FIREFOX_ESR_VERSION=153.7.0esr-1~deb13u1
 RUN apt-get update -qqy && \
     apt-get -qqy install  --no-install-recommends \
         #xvfb=2:1.20.4-1 \
