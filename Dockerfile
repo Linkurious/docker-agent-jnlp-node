@@ -28,7 +28,7 @@ RUN apt-get update -qqy && \
 USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
-ARG NVM_VERSION=v0.40.3
+ARG NVM_VERSION=v0.41.0
 # renovate: datasource=node-version depName=node versioning=node
 ARG NODE_22_VERSION=22.23.5
 # renovate: datasource=node-version depName=node versioning=node
