@@ -1,5 +1,5 @@
 ARG PRIVATE_REGISTRY=hub.docker.nexus3.linkurious.net/
-FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.49
+FROM ${PRIVATE_REGISTRY}linkurious/docker-agent-jnlp:0.0.50
 
 LABEL maintainer="Edward Nys <edward@linkurio.us>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -12,7 +12,7 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 
 # Latest Ubuntu Google Chrome, XVFB and JRE installs
 # renovate: datasource=deb depName=google-chrome-stable versioning=loose
-ARG GOOGLE_CHROME_STABLE_VERSION=157.0.8103.38-1
+ARG GOOGLE_CHROME_STABLE_VERSION=157.0.8103.78-1
 # renovate: datasource=custom.debian-trixie depName=firefox-esr versioning=loose
 ARG FIREFOX_ESR_VERSION=153.6.0esr-1~deb13u1
 RUN apt-get update -qqy && \
@@ -28,13 +28,13 @@ RUN apt-get update -qqy && \
 USER jenkins
 
 # renovate: datasource=github-releases depName=nvm-sh/nvm
-ARG NVM_VERSION=v0.40.3
+ARG NVM_VERSION=v0.41.0
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_22_VERSION=22.23.4
+ARG NODE_22_VERSION=22.23.5
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_24_VERSION=24.22.1
+ARG NODE_24_VERSION=24.22.3
 # renovate: datasource=node-version depName=node versioning=node
-ARG NODE_26_VERSION=26.13.0
+ARG NODE_26_VERSION=26.13.1
 # hadolint ignore=SC1091, SC2016
 RUN git clone --depth 1 --branch "$NVM_VERSION" https://github.com/nvm-sh/nvm.git ~/.nvm && \
     echo -e 'export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm\n' >> ~/.bashrc \
